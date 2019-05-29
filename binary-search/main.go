@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type Node struct {
 	value int
@@ -25,11 +28,19 @@ func printNode(n* Node) {
 
 func read() []Node {
 	var N int
-	fmt.Scanf("%d", &N)
+	_, err := fmt.Scanf("%d", &N)
+	if err != nil {
+		log.Fatal(err)
+	}
 	nodes := make([]Node, N)
 	for i := 0; i < N; i++ {
 		var val, indexLeft, indexRight int
-		fmt.Scanf("%d %d %d", &val, &indexLeft, &indexRight)
+
+		_, err := fmt.Scanf("%d %d %d", &val, &indexLeft, &indexRight)
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		nodes[i].value = val
 		if indexLeft >= 0 {
 			nodes[i].left = &nodes[indexLeft]
